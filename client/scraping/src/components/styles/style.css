@@ -1,0 +1,81 @@
+.post {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80%;
+  padding: 0% 0% 0% 20%;
+}
+
+.pre-parent {
+  min-width: 45rem !important;
+}
+
+.pre-info.pre-footer {
+  background-color: #f2f2f2;
+  color: #777;
+  font-size: 0.95em;
+}
+
+.pre-info {
+  word-break: break-all;
+}
+
+@media screen and (max-width: 740px) {
+  body {
+    overflow-y: hidden;
+  }
+  a {
+    margin: 0% 50% !important;
+  }
+  .post {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 35rem;
+    padding: 0% 10% 0% 0%;
+  }
+  .pre-parent {
+    min-width: 25rem !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  body {
+    overflow-y: hidden;
+  }
+  a {
+    margin: 0% 70% 0% !important;
+  }
+  .post {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 30rem;
+    padding: 0% 10% 0% 0%;
+  }
+  .pre-parent {
+    min-width: 23rem !important;
+  }
+}
+
+@media screen and (max-width: 466px) {
+  html {
+    overflow-y: hidden;
+  }
+  a {
+    margin: 0% 60% !important;
+  }
+  body {
+    font-size: .8rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */
