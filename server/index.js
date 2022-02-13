@@ -41,6 +41,12 @@ app.get('/',async (req, res) => {
 
 app.delete('/',async (req, res) => {
   const response = await Post.deleteMany({})
+  await Post.create({
+    "title": "Dark Leak Market",
+    "author": "Posted by Anonymous",
+    "content": "DARK LEAK MARKET Leaked databases & documents. http://ydnvjy3hfvmhkf7ayjhfttfamanpyholz2he4sejeokk3ot5ms4fa5ad.onion/",
+    "date": "07 Feb 2022 21:00:15"
+  })
   res.send(response)
 })
 

@@ -1,7 +1,2 @@
-var Sentiment = require('sentiment');
-var sentiment = new Sentiment();
-let options = {
-    'por11e1sn':300
-}
-var result = sentiment.analyze('bad porn');
-console.log(result)
+let arr = [1,2,3]
+console.log([...arr,...[4]]);

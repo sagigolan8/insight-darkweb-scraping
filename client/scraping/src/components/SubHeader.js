@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Ringtone from './ringtone/Ringtone'
 
 
-export default function Subheader({ posts, setFilteredPosts, notification }) {
+function Subheader({ filterNewPosts, newPosts, showNewPosts , posts, setFilteredPosts, notification }) {
     const [wordEntered, setWordEntered] = useState("");
-  
+    const filterPosts = filterNewPosts ? newPosts : posts //who we want to filter old posts or new posts
     const handleFilter = ({ target: { value } }) => {
       const searchWord = value.toLowerCase();
       setWordEntered(searchWord);
-      let newFilter = posts.filter(({ title }) => title.toLowerCase().includes(searchWord));
+      let newFilter = filterPosts.filter(({ title }) => title.toLowerCase().includes(searchWord));
       if (searchWord === "") {
         setFilteredPosts([]);
       } else {
@@ -24,10 +24,9 @@ export default function Subheader({ posts, setFilteredPosts, notification }) {
     <nav
     style={{padding:'2% 5% 0% 0%'}} 
     className="navbar navbar-light bg-light justify-content-between">
-     
             <a className="navbar-brand"></a>
             <form className="form-inline ringtone-inline">
-              <div className="ringtone-position">
+              <div onClick={()=>showNewPosts()} className="ringtone-position"  >
               <Ringtone notification={notification} />
               </div>
             <input
@@ -43,3 +42,5 @@ export default function Subheader({ posts, setFilteredPosts, notification }) {
         </nav>
   )
 }
+
+export default Subheader;

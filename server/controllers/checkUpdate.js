@@ -10,7 +10,10 @@ exports.checkForUpdate = async (myLastPostDate, torLastPostDate) => {
     if(torLastPostDate.isAfter(myLastPostDate)){ //so i need to add it to db, --checking by comparing dates
         console.log("found some new post");
         const newTorPosts = await getTorPosts()
-        const myNewPosts = addAllNewPosts(myLastPostDate,newTorPosts)
+        let myNewPosts = addAllNewPosts(myLastPostDate,newTorPosts)
+        if(myNewPosts.length){
+            myNewPosts = (await myNewPosts).reverse()
+        }
         return myNewPosts
     }
     else{
