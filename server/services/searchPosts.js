@@ -1,6 +1,6 @@
 const playwright = require("playwright");
 const cheerio = require("cheerio");
-const moment = require("moment");
+
 
 //return fixed strings without unnecessary white spaces or special characters
 const fixContent = (content, isDate="") => { 
@@ -45,7 +45,6 @@ const fixContent = (content, isDate="") => {
   });
 
   await browser.close();
-  console.log(arrData);
   return arrData;
 }
 
@@ -101,8 +100,9 @@ const formatDate = (date) =>{ //replace - Feb 08 2022 01:00 ->  08 Feb 2022 01:0
   return date.join(" ")
 }
 
+
 module.exports = {
   getTorLastPost,
   getTorPosts,
-  formatDate
+  formatDate,
 }
