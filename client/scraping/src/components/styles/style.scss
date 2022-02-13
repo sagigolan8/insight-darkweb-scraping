@@ -1,5 +1,9 @@
 html{
     overflow-x: hidden 
+    
+}
+#stronghold-paste, #archives{
+    cursor: pointer;
 }
 li{
     overflow-wrap: break-word;
@@ -40,6 +44,13 @@ nav{
 }
 
 @media screen and (max-width: 740px) {
+    .ringtone-position{
+        position:absolute;
+        left: 60%;
+      }
+      .filter-input{
+        margin: 30% 0%  ;
+      }
         body{
             overflow-x: hidden;
         }
@@ -267,6 +278,22 @@ nav{
     }
 
   @media screen and (max-width:300px) {
+    .icon-button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px !important;
+        height: 30px !important;
+        color: #333333;
+        background: #dddddd;
+        border: none;
+        outline: none;
+        border-radius: 50%;
+      }
+      .material-icons{
+        font-size: 14px !important;
+      }
     html{
         overflow-x: hidden;
         font-size: .6rem;
@@ -284,10 +311,10 @@ nav{
             margin: 0% 0% ;
             .category{
                 .icons{
-                    font-size: .25rem !important;
+                    font-size: .9rem !important;
                 }
                 padding: 0rem .1rem .1rem .1rem !important;
-                font-size: .25rem !important;
+                font-size: .9rem !important;
                 color: #777;
                 text-decoration: none;
             }

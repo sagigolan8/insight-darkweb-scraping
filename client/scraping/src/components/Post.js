@@ -2,10 +2,10 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/style.scss'
 
-export default function Post({post}) {
+export default function Post({post,borderColor}) {
   return (
       <div className="post">
-      <div className="rounded border pre-parent" >
+      <div className={borderColor} >
           <div className="pre-info pre-header">
               <div className="row">
                 <div className="col-sm-5">

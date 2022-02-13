@@ -34,6 +34,7 @@ app.post('/',async (req, res) => {
 })
 
 app.get('/',async (req, res) => {
+  console.log('HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   const response = await Post.find({})
   res.send(response)
 })

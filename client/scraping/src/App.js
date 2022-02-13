@@ -1,53 +1,76 @@
 import React, { useEffect, useState } from 'react';
 import Post from './components/Post';
-import axios from 'axios'
 import { nanoid } from 'nanoid'
 import Header from './components/Header';
+import SubHeader from './components/SubHeader';
+import DarkMode from './components/DarkMode';
+import {
+  sentimentScore,
+  getPosts  
+} from './services/helperFuncs'
 
 export default function App() {
+  const [newPosts, setNewPosts] = useState([])
+  const [notification, setNotification] = useState(0)
+  const [allPosts, setAllPosts] = useState([]);
+
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [initializePosts, setInitializePosts] = useState(true);
-  const getPosts = async () => {
-    try{
-      const res = await axios.get('http://localhost:8080');
-      console.log(res.data);
-      return res.data
-      
-    } catch (err) {
-      console.error(err);
-      }
-    }
+  
+  // const showNewPosts = () => {
+  //   setNewPosts(newPosts)
+  // }
+  
+  const showPosts = () =>{
+    setPosts(posts)
+  }
+
+  const getAllPosts = async () => {
+      const response = await getPosts()
+      setPosts(response)
+      setAllPosts(response)
+      setInitializePosts(false)
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      console.log("initialize posts");
-      const response = await getPosts()
-      console.log(response);
-      setPosts(response.reverse())
-      setInitializePosts(false)
-    }
     if(initializePosts)
-    fetchData()
+    getAllPosts()
     const source = new EventSource(`http://localhost:8080/fetchData`);
     source.onmessage = function (event) {
-    console.log(Date(Date.now()).slice(0,24));
-    const data = JSON.parse(event.data)
-    console.log(data);
-        if(data.updateData && data.updateData.length > 0){
-          setPosts(data.updateData.reverse())
+    const { updateData } = JSON.parse(event.data)
+    console.log(updateData)
+        if(updateData){
+          setNewPosts(updateData)
+          setNotification(updateData.length + notification)
+          console.log(newPosts)
+          console.log(notification)
         }
     }
-
 }, [])
 
-  
-  
+
   return (
     <div>
-      <Header />
+      <DarkMode/>
+      <Header
+      showPosts={showPosts} 
+      />
+      <SubHeader
+      // showNewPosts={showNewPosts}
+      notification={notification}
+      posts={posts}
+      setFilteredPosts={setFilteredPosts} 
+      /> 
         <div className="container">
           <br/>
-          {posts.map((post)=> <Post key={nanoid()} post={post} />)}
+          {
+          filteredPosts.length !== 0
+          ?
+          filteredPosts.map((post)=> <Post key={nanoid()} borderColor={sentimentScore(post.title,post.content)}  post={post} />)
+          :
+          posts.map((post)=> <Post key={nanoid()} borderColor={sentimentScore(post.title,post.content)}  post={post} />)
+          }
       <br/>
         </div>
     </div>
